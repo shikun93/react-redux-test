@@ -20,9 +20,9 @@ module.exports = merge(webpackConfig,{
 					use:[
 						{
 							loader:'css-loader',
-							options:{
-								modules:true
-							}
+							// options:{
+							// 	modules:true
+							// }
 						},
 						{loader:'less-loader'},
 						{loader:'postcss-loader'}

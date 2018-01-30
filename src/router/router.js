@@ -6,6 +6,8 @@ import Loadable from "react-loadable";
 import {createStore} from "redux";
 import todoApp from "@/store/reducers";
 
+import "antd/dist/antd.less";
+
 const store = createStore(todoApp);
 
 window.routerTrigger = function(t,url){
@@ -29,10 +31,18 @@ const Login = Loadable({
 	loading: MyLoadingComponent
 });
 
+const Main = Loadable({
+    loader: () => import("../page/main"),
+    loading: MyLoadingComponent
+});
+
 ReactDOM.render(
 	<Provider store={store}>
         <Router>
-            <Route exact path = "/" component = {Login}/>
+            <div>
+                <Route exact path = "/" component = {Login}/>
+                <Route path = "/main" component = {Main}/>
+            </div>  
         </Router>
     </Provider>,document.getElementById("app")
 );

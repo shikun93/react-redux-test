@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { CHANGE_VALUE } from "./actions";
+import { CHANGE_VALUE,CHANGE_HEIGHT } from "./actions";
 
 function login(state = {value:1},action) {
 	switch (action.type) {
@@ -12,8 +12,20 @@ function login(state = {value:1},action) {
 	}
 }
 
+function main(state = {height:"0px"},action){
+	switch (action.type) {
+		case CHANGE_HEIGHT:
+			return Object.assign({},state,{
+				height:action.val+"px"
+			});
+		default:
+			return state;
+	}
+}
+
 const todoApp = combineReducers({
-  login
+	login,
+	main
 });
 
 export default todoApp;

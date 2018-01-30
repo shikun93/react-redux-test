@@ -24,12 +24,8 @@ module.exports = merge(webpackConfig,{
 			{
 				test:/\.less$/,
 				use:[
-					{
-						loader:'css-loader',
-						options:{
-							modules:true
-						}
-					},
+					{loader:'style-loader'},
+					{loader:'css-loader'},
 					{loader:'less-loader'},
 					{loader:'postcss-loader'}
 				]

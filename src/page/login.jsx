@@ -1,10 +1,10 @@
 import React,{Component} from "react";
 import { connect } from "react-redux";
-//import { changeValue } from "@/store/actions";
+import { changeValue } from "@/store/actions";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 const FormItem = Form.Item;
 
-import style from "@/less/login.less";
+import "@/less/login.less";
 
 class LoginForm extends React.Component {
 
@@ -81,21 +81,22 @@ class Login extends Component {
 	}
 
 	handleSubmit(t){
-        this.props.form.validateFields((err, values) => {
-          if (!err) {
-
-            //routerTrigger(t,"/main");
-          }
-        });
+      let {dispatch} = t.props;
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          dispatch(changeValue(values));
+          //routerTrigger(t,"/main");
+        }
+      });
     }
 
 	render(){
 		let t = this;
 		//let { value } = this.props;
 		return (
-			<div className={style.login}>
+			<div className="login">
                <h1>十间鱼后台管理系统</h1>
-               <div className={style.form_main}>
+               <div className="form_main">
                     <WrappedNormalLoginForm  handleSubmit={t.handleSubmit}  parentThis = {t}/>
                </div>
             </div>
