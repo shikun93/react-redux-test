@@ -12,6 +12,7 @@
 		"transform-runtime",
 		"syntax-dynamic-import",
 		"transform-async-to-generator",
+		"transform-class-properties",
 		['import',{libraryName:'antd',style:'less'}]
 	]
 }

@@ -23,8 +23,7 @@ module.exports = {
 	        use: 'babel-loader',
 	        exclude:'/node_modules/',
 	        include: [path.join(__dirname,'src')]
-	      },
-	      
+	      },  
 	      {
 	        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
 	        loader: 'url-loader',

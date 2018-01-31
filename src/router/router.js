@@ -1,18 +1,21 @@
+import "core-js/fn/object/assign";
+import "core-js/fn/promise";
+import "core-js/es6/map";
+import "core-js/es6/set";
+import "raf/polyfill";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
 import {HashRouter as Router,Route} from "react-router-dom";
+import {createStore,applyMiddleware} from "redux";
 import Loadable from "react-loadable";
-import {createStore} from "redux";
-import todoApp from "@/store/reducers";
 
 import "antd/dist/antd.less";
+import todoApp from "@/store/reducers";
 
-const store = createStore(todoApp);
-
-window.routerTrigger = function(t,url){
-    t.props.history.push(url);
-};
+const store = createStore(todoApp,applyMiddleware(thunk));
 
 const MyLoadingComponent = ({ isLoading, error }) => {
     if (isLoading) {

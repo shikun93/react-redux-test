@@ -11,14 +11,18 @@ var app = express();
 
 var compiler = webpack(config);
 
-// 为了修改html文件也能实现热加载，使用webpack插件来监听html源文件改变事件
-//compiler.plugin('compilation',function(compilation){
-//    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-//        // 发布事件
-//        hotMiddleware.publish({ action: 'reload' });
-//        cb();
-//    })
-//})
+//为了修改html文件也能实现热加载，使用webpack插件来监听html源文件改变事件
+compiler.plugin('compilation',function(compilation){
+   compilation.plugin('html-webpack-plugin-alter-asset-tags', function (htmlPluginData, cb) {
+       // 发布事件
+      htmlPluginData.head.push({
+      	tagName:'script',
+      	closeTag:true,
+      	attributes:{type:'text/javascript',src:'static/vendors.dll.js'}
+      });
+      cb(null,htmlPluginData);
+   })
+})
 var devMiddleware = webpackDevMiddleware(compiler,{
     publicPatch:"./",
     quiet:true

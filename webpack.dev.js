@@ -16,7 +16,7 @@ module.exports = merge(webpackConfig,{
 				loader:'eslint-loader',
 				enforce:'pre',
 				include:[path.join(__dirname,'src')],
-				exclude:[],
+				exclude:[path.join(__dirname,'src/app/check-env')],
 				options:{
 					formatter:require('eslint-friendly-formatter')
 				}
@@ -38,6 +38,10 @@ module.exports = merge(webpackConfig,{
 				NODE_ENV: JSON.stringify('development')
 			}
 		}),
+		new webpack.DllReferencePlugin({
+          	context: __dirname,
+          	manifest: require('./vendors-manifest.json')
+       	}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			filename:'index.html',
@@ -48,7 +52,7 @@ module.exports = merge(webpackConfig,{
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.ProvidePlugin({
-		  _: 'lodash',
+		  _: 'lodash'
 		}),
 		new FriendlyErrorsWebpackPlugin()
 	]

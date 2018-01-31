@@ -1,9 +1,10 @@
 import React,{Component} from "react";
 import { connect } from "react-redux";
-import { changeHeight } from "@/store/actions";
+import { mainHeight,mainGetMenu } from "@/store/actions";
 import { Menu, Dropdown, Icon } from "antd";
 
-import "@/less/login.less";
+import "@/less/main.less";
+import "@/font/iconfont.less";
 
 class Main extends Component {
 
@@ -16,9 +17,11 @@ class Main extends Component {
 
 	componentDidMount(){
         let { dispatch } = this.props;
-        dispatch(changeHeight(document.body.offsetHeight));
+        let token = sessionStorage.getItem("token");
+        dispatch(mainHeight(document.body.offsetHeight));
+        dispatch(mainGetMenu(token));
         window.onresize = () =>{
-            dispatch(changeHeight(document.body.offsetHeight));
+            dispatch(mainHeight(document.body.offsetHeight));
         };
 	}
 
@@ -84,7 +87,8 @@ class Main extends Component {
 
 function selectMain (state) {
 	return {
-		height:state.main.height?state.main.height:"400px"
+		height:state.main.height?state.main.height:"400px",
+        menu:state.main.data
 	};
 }
 
