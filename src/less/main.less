@@ -1,6 +1,9 @@
 body,p,ul,li{
 	margin: 0;
-	padding: 0;
+	padding: 0;	
+}
+ul,li{
+	list-style:none;
 }
 body{
 	font:12px"宋体","Arial Narrow";
@@ -20,7 +23,7 @@ body{
 		color: #fff;
 		background: #4ea5ea;
 		border-bottom:1px solid #000;
-		.menu{
+		.header_menu{
 			float: right; 
 			
 			margin-right: 15px;
@@ -32,7 +35,7 @@ body{
 			width: 180px;
 			float: left;
 			min-height: 661px;
-			.nav{
+			.slider_nav{
 				li{
 					height: 40px;
 					padding-top: 10px;
@@ -63,6 +66,15 @@ body{
 				margin: 0 10px;
 				border:1px solid #000;
 				background: #fff;
+				.content_header_nav{
+					overflow: hidden;
+					>li{
+						float: left;
+						height: 30px;
+						line-height: 30px;
+						margin: 0 20px;
+					}
+				}
 			}
 			.router_view{
 				min-height: 565px;

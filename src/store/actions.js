@@ -30,6 +30,7 @@ export function loading(val,cb){
 //main
 export const CHANGE_HEIGHT = "CHANGE_HEIGHT";
 export const GETMENU = "GETMENU";
+export const GETNEXTMENU = "GETNEXTMENU";
 
 export function mainHeight(height){
 	return {type:CHANGE_HEIGHT,height};
@@ -46,4 +47,12 @@ export function mainGetMenu(admin_token){
 		});
 	};
 }
-
+export function getNextMenu(n){
+	return (dispatch,getState) => {
+		let {main} = getState();
+		let menu = main.menu[n].child;
+		if(menu){
+			dispatch({type:GETNEXTMENU,nextMenu:menu});
+		}
+	};
+}

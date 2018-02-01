@@ -1,6 +1,6 @@
-import { CHANGE_HEIGHT,GETMENU } from "../actions";
+import { CHANGE_HEIGHT,GETMENU,GETNEXTMENU } from "../actions";
 
-function main(state = {height:"0px"},action) {
+function main(state = {height:"0px",menu:[],childMenu:[]},action) {
 	switch (action.type) {
 	case CHANGE_HEIGHT:
 		return Object.assign({},state,{
@@ -9,6 +9,10 @@ function main(state = {height:"0px"},action) {
 	case GETMENU:
 		return Object.assign({},state,{
 			menu:action.data
+		});
+	case GETNEXTMENU:
+		return Object.assign({},state,{
+			childMenu:action.nextMenu
 		});
 	default:
 		return state;

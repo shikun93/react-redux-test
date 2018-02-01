@@ -38,6 +38,10 @@ const Main = Loadable({
     loader: () => import("../page/main"),
     loading: MyLoadingComponent
 });
+const Test = Loadable({
+    loader: () => import("../page/test"),
+    loading: MyLoadingComponent
+});
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -45,6 +49,7 @@ ReactDOM.render(
             <div>
                 <Route exact path = "/" component = {Login}/>
                 <Route path = "/main" component = {Main}/>
+                <Route path = "/test" component = {Test}/>
             </div>  
         </Router>
     </Provider>,document.getElementById("app")
